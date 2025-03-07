@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1f1f23;
+    font-family: "Inter", "Roobert", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #efeff1;
+}
+/* Add these styles to your twitch_styles.css file */
+
+.twitch-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('img/twitch_preview_background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    transform: scale(1.1);
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.platform-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.platform-header {
+    position: relative;
+    z-index: 1;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.platform-card .platform-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Remove the coming-soon class from the Twitch platform card */
+.platform-card.coming-soon .preview-container {
+    position: relative;
+}
+
+.twitch-container {
+    background-color: #0e0e10;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure the preview container has proper spacing */
+.platform-card .preview-container {
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+.twitch-container {
+    width: 290px;
+    padding: 10px 0;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 1px solid #2f3336;
+    border-radius: 0;
+    overflow: hidden;
+    background-color: #1f1f23;
+}
+
+
+.sidebar-section {
+    padding: 10px 10px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #efeff1;
+}
+
+.section-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-icon {
+    color: #adadb8;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.subsection-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #efeff1;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin: 10px 0 5px;
+    padding: 0 10px;
+}
+
+.channel-list {
+    list-style-type: none;
+}
+
+.channel-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.channel-item:hover {
+    background-color: #26262c;
+}
+
+.channel-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.channel-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.channel-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #efeff1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.channel-game {
+    font-size: 13px;
+    color: #adadb8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.channel-status {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #adadb8;
+    margin-left: 5px;
+}
+
+.live-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #e91916;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.viewer-count {
+    font-size: 12px;
+    white-space: nowrap;
+    color: #efeff1;
+}
+
+.platform-card .twitch-sidebar {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    max-height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.platform-card .preview-container {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+

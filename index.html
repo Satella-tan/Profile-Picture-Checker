@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Picture Checker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="discord_styles.css">
+    <link rel="stylesheet" href="twitter_styles.css">
+    <link rel="stylesheet" href="twitch_styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Profile Picture Checker</h1>
+            <p class="subtitle">See how your profile picture looks across different platforms</p>
+        </header>
+
+        <div id="notification" class="hidden alert"></div>
+
+        <div id="step-1" class="step">
+            <h2><span class="step-number">1</span> Enter Your Name</h2>
+            <div class="name-input-container">
+                <label for="user-name">Your Name:</label>
+                <input type="text" id="user-name" class="name-input" placeholder="Enter your name">
+            </div>
+            
+            <h2><span class="step-number">2</span> Upload Your Image</h2>
+            <div class="upload-container" id="upload-area">
+                <div class="upload-icon"><img src="img/upload_pic.png" alt=""></div>
+                <p>Drag & drop your image here</p>
+                <p>or</p>
+                <button id="upload-btn">Choose File</button>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+        </div>
+
+        <div id="step-2" class="step hidden">
+            <h2><span class="step-number">3</span> Crop Your Image</h2>
+            <div class="cropper-container">
+                <img id="image-preview" src="" alt="Image Preview">
+            </div>
+            <div class="crop-actions">
+                <button id="crop-btn" class="btn">Crop Image</button>
+                <button id="reset-btn" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+
+        <div id="step-3" class="step hidden">
+            <h2><span class="step-number">4</span> Preview Your Profile Picture</h2>
+            <p id="user-greeting">Below are previews of how your profile picture will appear on various platforms:</p>
+            
+            <div class="platforms-grid">
+                <div class="platform-card discord-card">
+                    <div class="discord-background"></div>
+                    <div class="platform-header">
+                        <div class="platform-name">Discord</div>
+                    </div>
+                    <div class="preview-container">
+                        <div class="discord-profile-container">
+                            <div class="discord-profile-popup">
+                                <!-- Top header bar -->
+                                <div class="discord-profile-header"></div>
+                
+                                <!-- Avatar overlaps header -->
+                                <div class="discord-avatar-container">
+                                    <img id="discord-popup-avatar" src="" alt="User Avatar" class="discord-popup-avatar">
+                                    <div class="discord-status-indicator">
+                                        <i>✕</i>
+                                    </div>
+                                </div>
+                
+                                <!-- Main content below -->
+                                <div class="discord-profile-content">
+                                    <div id="discord-popup-username" class="discord-popup-username">User</div>
+                                    <div class="discord-user-tag">
+                                        <span id="discord-user-tag">user</span> • Discord User
+                                        <span class="discord-heart-icon">❤️</span>
+                                    </div>
+                                    <div class="discord-user-status">
+                                        I Really Want to Stay at Your House
+                                    </div>
+                                    <button class="discord-edit-profile-button">
+                                        <i>✏️</i> Edit Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add the Discord message preview -->
+                        <div class="discord-message-container">
+                            <div class="discord-message">
+                                <img id="discord-avatar" class="discord-avatar" src="" alt="User Avatar">
+                                <div class="discord-message-content">
+                                    <div class="discord-message-header">
+                                        <div id="discord-username" class="discord-username">User</div>
+                                        <div class="discord-timestamp">Today at 4:20 PM</div>
+                                    </div>
+                                    <div class="discord-message-text">
+                                        sorry for having a tiny waist and perfect opinions it will never happen again
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="preview-description">Circular crop, 128px by 128px</p>
+                </div>
+                
+                <!---------------- TWITTER ------------------------------>
+
+                <div class="platform-card twitter-card">
+                    <div class="twitter-background"></div>
+                    <div class="platform-header">
+                        <div class="platform-name">Twitter</div>
+                    </div>
+                    <div class="preview-container" id="preview-container-twitter">
+                        <!-- Notification Preview -->
+                        <div class="notification-container">
+                            <div class="notification">
+                                <div class="icon-container">
+                                    <img src="img/twitter_like.png" alt="Like" class="heart-icon">
+                                </div>
+                                
+                                <div class="notification-content">
+                                    <div class="notification-text">
+                                        <img id="twitter-notification-preview" src="" alt="User Avatar" class="avatar">
+                                        <br>
+                                        User liked your post
+                                    </div>
+                                    <div class="notification-detail">
+                                        meowmeowwmeowmeow nyaa meowmeow
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Existing Tweet Preview -->
+                        <div class="tweet-container">
+                            <div class="tweet">
+                                <img id="twitter-preview" src="" alt="User Avatar" class="avatar">
+                                
+                                <div class="tweet-content">
+                                    <div class="tweet-header">
+                                        <span id="twitter-display-name" class="display-name">User</span>
+                                        <span id="twitter-handle" class="user-handle">@user</span>
+                                        <span class="dot-separator">·</span>
+                                        <span class="tweet-time">15h</span>
+                                        <span class="more-options">•••</span>
+                                    </div>
+                                    
+                                    <div class="tweet-text">
+                                        if the truth is cruel, then lies must be kind
+                                    </div>
+                                    
+                                    <div class="tweet-actions">
+                                        <div class="action-button">
+                                            <span class="action-icon">
+                                                <img src="img/twitter_comment.png" alt="Comment" class="icon-small">
+                                            </span>
+                                            <span class="action-count">5</span>
+                                        </div>
+                                        
+                                        <div class="action-button">
+                                            <span class="action-icon">
+                                                <img src="img/twitter_retweet.png" alt="Retweet">
+                                            </span>
+                                            <span class="action-count">2</span>
+                                        </div>
+                                        
+                                        <div class="action-button">
+                                            <span class="action-icon">
+                                                <img src="img/twitter_like.png" alt="Like" class="icon-small">
+                                            </span>
+                                            <span class="action-count">28</span>
+                                        </div>
+                                        
+                                        <div class="action-button">
+                                            <span class="action-icon">
+                                                <img src="img/twitter_stats.png" alt="Stats" class="icon-small">
+                                            </span>
+                                            <span class="action-count">3 mil</span>
+                                        </div>
+                                        
+                                        <div class="action-button">
+                                            <span class="action-icon"></span>
+                                        </div>
+                                        
+                                        <div class="action-button">
+                                            <span class="action-icon"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="preview-description">Circular crop, recommended 400px by 400px</p>
+                </div>
+                
+
+
+
+
+
+
+                
+                <div class="platform-card">
+                    <div class="twitch-background"></div>
+                    <div class="platform-header">
+                        <div class="platform-name">Twitch</div>
+                    </div>
+                    <div class="preview-container">
+                        <div class="twitch-container">
+                            <div class="twitch-sidebar">
+                                <div class="sidebar-section">
+                                    <div class="section-header">
+                                        <div class="section-title">For You</div>
+                                        <div class="section-controls">
+                                            <!-- <div class="control-icon">←|</div> -->
+                                            <div class="control-icon">↻</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="subsection-title">LIVE FOLLOWED CHANNELS</div>
+                                    
+                                    <ul class="channel-list">
+                                        <li class="channel-item">
+                                            <img id="twitch-preview-1" src="" alt="Channel Avatar" class="channel-avatar">
+                                            <div class="channel-info">
+                                                <div id="twitch-username-1" class="channel-name" style="margin-bottom: -3px;">User</div>
+                                                <div class="channel-game">League of Legends</div>
+                                            </div>
+                                            <div class="channel-status">
+                                                <div class="live-indicator"></div>
+                                                <div class="viewer-count">126</div>
+                                            </div>
+                                        </li>
+                                        
+                                        <li class="channel-item">
+                                            <img src="img/pfp_test.jpeg" alt="Channel Avatar" class="channel-avatar">
+                                            <div class="channel-info">
+                                                <div class="channel-name" style="margin-bottom: -3px;">flowlyrr</div>
+                                                <div class="channel-game">osu!</div>
+                                            </div>
+                                            <div class="channel-status">
+                                                <div class="live-indicator"></div>
+                                                <div class="viewer-count">108</div>
+                                            </div>
+                                        </li>
+                                        <li class="channel-item">
+                                            <img src="img/pfp_test2.jpg" alt="Channel Avatar" class="channel-avatar">
+                                            <div class="channel-info">
+                                                <div class="channel-name" style="margin-bottom: -3px;">NOTE</div>
+                                                <div class="channel-game">Rust</div>
+                                            </div>
+                                            <div class="channel-status">
+                                                <div class="live-indicator"></div>
+                                                <div class="viewer-count">89</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="preview-description">Circular crop, 256px by 256px</p>
+                </div>
+                
+
+
+
+
+
+
+
+
+                <div class="platform-card coming-soon">
+                    <div class="platform-name">GitHub</div>
+                    <div class="preview-container">
+                        <div class="coming-soon-overlay">
+                            <span class="coming-soon-text">Coming Soon</span>
+                        </div>
+                    </div>
+                    <p class="preview-description">Circular display, 260px by 260px</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <button id="try-another-btn" class="btn btn-secondary">Try Another Image</button>
+            </div>
+            
+            <div class="disclaimer">
+                <!-- GitHub link inline with disclaimer -->
+                <div class="github-link">
+                    <a href="https://github.com/Satella-tan" target="_blank" rel="noopener noreferrer">
+                        <img src="img/github_logo.png" alt="GitHub Logo" class="github-logo">
+                        
+                    </a>
+                </div>
+                
+                Disclaimer: The designs and previews presented here are independent simulations. This project is not connected to or endorsed by Discord, Twitter, Twitch, or GitHub.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        
+    </script>
+</body>
+</html>
