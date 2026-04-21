@@ -84,9 +84,9 @@ function handleFileUpload(file) {
         return;
     }
 
-    // Check file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-        showNotification('File size should be less than 5MB', 'error');
+    // Check file size (max 7MB)
+    if (file.size > 7 * 1024 * 1024) {
+        showNotification('File size should be less than 7MB', 'error');
         return;
     }
 
