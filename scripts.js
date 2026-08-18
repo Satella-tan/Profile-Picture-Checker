@@ -23,7 +23,7 @@ const discordUsername = document.getElementById('discord-username');
 const discordPreview = document.getElementById('discord-preview');
 const twitterPreview = document.getElementById('twitter-preview');
 const twitchPreview = document.getElementById('twitch-preview');
-const githubPreview = document.getElementById('github-preview');
+const pokerstarsPreview = document.getElementById('pokerstars-preview');
 
 // Variables
 let cropper;
@@ -53,7 +53,7 @@ uploadArea.addEventListener('drop', (e) => {
     uploadArea.style.borderColor = '#ccc';
     // Remove this line that changes background color
     // uploadArea.style.backgroundColor = '#f8f9fa';
-    
+
     if (e.dataTransfer.files.length) {
         handleFileUpload(e.dataTransfer.files[0]);
     }
@@ -77,7 +77,7 @@ tryAnotherBtn.addEventListener('click', () => {
 function handleFileUpload(file) {
     // Save user name
     userName = userNameInput.value.trim();
-    
+
     // Validate file type
     if (!file.type.match('image.*')) {
         showNotification('Please upload an image file (JPEG, PNG, etc.)', 'error');
@@ -91,19 +91,19 @@ function handleFileUpload(file) {
     }
 
     const reader = new FileReader();
-    
+
     reader.onload = (e) => {
         imagePreview.src = e.target.result;
-        
+
         step1.classList.add('hidden');
         step2.classList.remove('hidden');
-        
+
         // Initialize cropper after the image is loaded
         imagePreview.onload = () => {
             if (cropper) {
                 cropper.destroy();
             }
-            
+
             cropper = new Cropper(imagePreview, {
                 aspectRatio: 1,
                 viewMode: 1,
@@ -117,43 +117,40 @@ function handleFileUpload(file) {
                 cropBoxResizable: true,
                 toggleDragModeOnDblclick: false
             });
-            
+
             showNotification('Image uploaded successfully. Please crop your image.', 'success');
         };
     };
-    
+
     reader.readAsDataURL(file);
 }
 
 function cropImage() {
     if (!cropper) return;
-    
+
     // Get the cropped canvas
     const canvas = cropper.getCroppedCanvas({
         width: 400,
         height: 400,
         fillColor: '#fff'
     });
-    
+
     if (!canvas) {
         showNotification('Failed to crop the image. Please try again.', 'error');
         return;
     }
-    
+
     // Convert canvas to data URL
     croppedImage = canvas.toDataURL('image/png');
-    
+
     // Generate platform previews
     generatePreviews(croppedImage);
-    
-    // Update greeting with user name if provided
-    if (userName) {
-        userGreeting.textContent = `Hello ${userName}! Below are previews of how your profile picture will appear on various platforms:`;
-    }
-    
+
+
+
     step2.classList.add('hidden');
     step3.classList.remove('hidden');
-    
+
     showNotification('Image cropped successfully. Check out the previews!', 'success');
 }
 
@@ -168,19 +165,24 @@ function generatePreviews(imageData) {
     discordPopupAvatar.src = imageData;
     // Set the Discord message avatar
     discordAvatar.src = imageData;
-    
+
     // Set Twitter previews
     twitterPreview.src = imageData;
     document.getElementById('twitter-notification-preview').src = imageData;
-    
+
     // Set Twitch preview
     document.getElementById('twitch-preview-1').src = imageData;
-    
+
+    // Set Pokerstars preview
+    if (pokerstarsPreview) {
+        pokerstarsPreview.src = imageData;
+    }
+
     // Set the Discord username to the user's entered name (or default if empty)
     const displayName = userName || 'User';
     discordUsername.textContent = displayName;
     discordPopupUsername.textContent = displayName;
-    
+
     // Update Twitter display name and handle
     document.getElementById('twitter-display-name').textContent = displayName;
     document.getElementById('twitter-handle').textContent = '@' + displayName.toLowerCase().replace(/\s+/g, '');
@@ -205,7 +207,12 @@ function clearPreviews() {
     // Clear Twitch preview
     document.getElementById('twitch-preview-1').src = '';
     document.getElementById('twitch-username-1').textContent = 'User';
-    
+
+    // Clear Pokerstars preview
+    if (pokerstarsPreview) {
+        pokerstarsPreview.src = '';
+    }
+
     // Reset Discord username and tag
     discordPopupUsername.textContent = 'User';
     discordUserTag.textContent = 'user';
@@ -214,12 +221,12 @@ function clearPreviews() {
     // Reset Twitter name and handle
     document.getElementById('twitter-display-name').textContent = 'User';
     document.getElementById('twitter-handle').textContent = '@user';
-    
+
     if (cropper) {
         cropper.destroy();
         cropper = null;
     }
-    
+
     imagePreview.src = '';
     fileInput.value = '';
 }
@@ -228,13 +235,9 @@ function showNotification(message, type) {
     notification.textContent = message;
     notification.className = `alert alert-${type}`;
     notification.classList.remove('hidden');
-    
+
     // Hide notification after 3 seconds
     setTimeout(() => {
         notification.classList.add('hidden');
     }, 3000);
 }
-
-
-
-

@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Picture Checker</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="discord_styles.css">
-    <link rel="stylesheet" href="twitter_styles.css">
-    <link rel="stylesheet" href="twitch_styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/discord_styles.css">
+    <link rel="stylesheet" href="css/twitter_styles.css">
+    <link rel="stylesheet" href="css/twitch_styles.css">
+    <link rel="stylesheet" href="css/pokerstars_styles.css">
 </head>
 <body>
     <div class="container">
@@ -25,7 +26,7 @@
                 <label for="user-name">Your Name:</label>
                 <input type="text" id="user-name" class="name-input" placeholder="Enter your name">
             </div>
-            
+
             <h2><span class="step-number">2</span> Upload Your Image</h2>
             <div class="upload-container" id="upload-area">
                 <div class="upload-icon"><img src="img/upload_pic.png" alt=""></div>
@@ -50,7 +51,7 @@
         <div id="step-3" class="step hidden">
             <h2><span class="step-number">4</span> Preview Your Profile Picture</h2>
             <p id="user-greeting">Below are previews of how your profile picture will appear on various platforms:</p>
-            
+
             <div class="platforms-grid">
                 <div class="platform-card discord-card">
                     <div class="discord-background"></div>
@@ -62,7 +63,7 @@
                             <div class="discord-profile-popup">
                                 <!-- Top header bar -->
                                 <div class="discord-profile-header"></div>
-                
+
                                 <!-- Avatar overlaps header -->
                                 <div class="discord-avatar-container">
                                     <img id="discord-popup-avatar" src="" alt="User Avatar" class="discord-popup-avatar">
@@ -70,7 +71,7 @@
                                         <i>✕</i>
                                     </div>
                                 </div>
-                
+
                                 <!-- Main content below -->
                                 <div class="discord-profile-content">
                                     <div id="discord-popup-username" class="discord-popup-username">User</div>
@@ -106,7 +107,7 @@
                     </div>
                     <p class="preview-description">Circular crop, 128px by 128px</p>
                 </div>
-                
+
                 <!---------------- TWITTER ------------------------------>
 
                 <div class="platform-card twitter-card">
@@ -121,7 +122,7 @@
                                 <div class="icon-container">
                                     <img src="img/twitter_like.png" alt="Like" class="heart-icon">
                                 </div>
-                                
+
                                 <div class="notification-content">
                                     <div class="notification-text">
                                         <img id="twitter-notification-preview" src="" alt="User Avatar" class="avatar">
@@ -139,7 +140,7 @@
                         <div class="tweet-container">
                             <div class="tweet">
                                 <img id="twitter-preview" src="" alt="User Avatar" class="avatar">
-                                
+
                                 <div class="tweet-content">
                                     <div class="tweet-header">
                                         <span id="twitter-display-name" class="display-name">User</span>
@@ -148,11 +149,11 @@
                                         <span class="tweet-time">15h</span>
                                         <span class="more-options">•••</span>
                                     </div>
-                                    
+
                                     <div class="tweet-text">
                                         if the truth is cruel, then lies must be kind
                                     </div>
-                                    
+
                                     <div class="tweet-actions">
                                         <div class="action-button">
                                             <span class="action-icon">
@@ -160,32 +161,32 @@
                                             </span>
                                             <span class="action-count">5</span>
                                         </div>
-                                        
+
                                         <div class="action-button">
                                             <span class="action-icon">
                                                 <img src="img/twitter_retweet.png" alt="Retweet">
                                             </span>
                                             <span class="action-count">2</span>
                                         </div>
-                                        
+
                                         <div class="action-button">
                                             <span class="action-icon">
                                                 <img src="img/twitter_like.png" alt="Like" class="icon-small">
                                             </span>
                                             <span class="action-count">28</span>
                                         </div>
-                                        
+
                                         <div class="action-button">
                                             <span class="action-icon">
                                                 <img src="img/twitter_stats.png" alt="Stats" class="icon-small">
                                             </span>
                                             <span class="action-count">3 mil</span>
                                         </div>
-                                        
+
                                         <div class="action-button">
                                             <span class="action-icon"></span>
                                         </div>
-                                        
+
                                         <div class="action-button">
                                             <span class="action-icon"></span>
                                         </div>
@@ -196,14 +197,14 @@
                     </div>
                     <p class="preview-description">Circular crop, recommended 400px by 400px</p>
                 </div>
-                
 
 
 
 
 
 
-                
+
+
                 <div class="platform-card">
                     <div class="twitch-background"></div>
                     <div class="platform-header">
@@ -220,9 +221,9 @@
                                             <div class="control-icon">↻</div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="subsection-title">LIVE FOLLOWED CHANNELS</div>
-                                    
+
                                     <ul class="channel-list">
                                         <li class="channel-item">
                                             <img id="twitch-preview-1" src="" alt="Channel Avatar" class="channel-avatar">
@@ -235,7 +236,7 @@
                                                 <div class="viewer-count">126</div>
                                             </div>
                                         </li>
-                                        
+
                                         <li class="channel-item">
                                             <img src="img/pfp_test.jpeg" alt="Channel Avatar" class="channel-avatar">
                                             <div class="channel-info">
@@ -265,7 +266,6 @@
                     </div>
                     <p class="preview-description">Circular crop, 256px by 256px</p>
                 </div>
-                
 
 
 
@@ -274,31 +274,36 @@
 
 
 
-                <div class="platform-card coming-soon">
-                    <div class="platform-name">GitHub</div>
+
+                <div class="platform-card pokerstars-card">
+                    <div class="pokerstars-background"></div>
+                    <div class="platform-header">
+                        <div class="platform-name">Pokerstars</div>
+                    </div>
                     <div class="preview-container">
-                        <div class="coming-soon-overlay">
-                            <span class="coming-soon-text">Coming Soon</span>
+                        <div class="pokerstars-container">
+                            <img id="pokerstars-preview" src="" alt="Pokerstars Avatar" class="pokerstars-avatar">
+                            <img src="img/pokerstars-table-pfp.png" alt="Pokerstars Table" class="pokerstars-table-overlay">
                         </div>
                     </div>
-                    <p class="preview-description">Circular display, 260px by 260px</p>
+                    <p class="preview-description">Circular crop table display</p>
                 </div>
             </div>
-            
+
             <div style="margin-top: 20px; text-align: center;">
                 <button id="try-another-btn" class="btn btn-secondary">Try Another Image</button>
             </div>
-            
+
             <div class="disclaimer">
                 <!-- GitHub link inline with disclaimer -->
                 <div class="github-link">
                     <a href="https://github.com/Satella-tan" target="_blank" rel="noopener noreferrer">
                         <img src="img/github_logo.png" alt="GitHub Logo" class="github-logo">
-                        
+
                     </a>
                 </div>
-                
-                Disclaimer: The designs and previews presented here are independent simulations. This project is not connected to or endorsed by Discord, Twitter, Twitch, or GitHub.
+
+                Disclaimer: The designs and previews presented here are independent simulations. This project is not connected to or endorsed by Discord, Twitter, Twitch, or Pokerstars.
             </div>
         </div>
     </div>
@@ -306,7 +311,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script src="scripts.js"></script>
     <script>
-        
+
     </script>
 </body>
 </html>
